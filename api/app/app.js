@@ -7,8 +7,10 @@ var db = new neo4j('http://neo4j:test@neo4j:7474');
 app.use('/', express.static(__dirname + '/view'));
 
 app.get('/tools/load', function (req, res, next) {
+    const randomId = parseInt(Math.random() * 100);
     db.insertNode({
-        name: 'Darth Vader #' + parseInt(Math.random() * 100),
+        id: randomId,
+        name: 'Darth Vader #' + randomId,
         sex: 'male'
     }, ['Person'], function (err, node) {
         if (err) return next(err);
