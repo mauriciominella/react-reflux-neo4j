@@ -1,4 +1,4 @@
-# React Starterkit
+# React + Reflux + Neo4j 
 
 This app has been created based on react starterkit.
 
