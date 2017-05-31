@@ -1,3 +1,6 @@
+# adds the executables from npm to the Unix $PATH variable
+PATH  := ./app/node_modules/.bin:$(PATH)
+
 all: demo
 
 ## application
