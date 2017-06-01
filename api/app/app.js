@@ -16,12 +16,23 @@ function insertRelationship (root_id, target_id, type) {
         });
 }
 
-function insertOption (next, callback) {
+function insertOption (callback) {
     const optionId = parseInt(Math.random() * 100);
     db.insertNode({
         id: optionId,
         name: 'Opção ' + optionId,
     }, ['Option'], function (err, node) {
+        if (err) throw err;
+        callback(node);
+    });
+}
+
+function insertRecipe (callback) {
+    const recipeId = parseInt(Math.random() * 100);
+    db.insertNode({
+        id: recipeId,
+        name: 'Receita ' + recipeId,
+    }, ['Recipe'], function (err, node) {
         if (err) throw err;
         callback(node);
     });
@@ -34,19 +45,20 @@ app.get('/tools/load', function (req, res, next) {
         name: 'Café da manhã ' + mealId,
     }, ['Meal'], function (err, node) {
         if (err) return next(err);
-        insertOption(next, function (option) {
-            console.log('id=' + node._id + ',optionid=' + option._id);
+        insertOption(function (option) {
             insertRelationship(node._id, option._id, 'IS_PART_OF');
+            insertRecipe(function (recipe) {
+                insertRelationship(option._id, recipe._id, 'IS_PART_OF');
+            });
         });
 
-    });
+        insertOption(function (option) {
+            insertRelationship(node._id, option._id, 'IS_PART_OF');
+            insertRecipe(function (recipe) {
+                insertRelationship(option._id, recipe._id, 'IS_PART_OF');
+            });
+        });
 
-    const recipeId = parseInt(Math.random() * 100);
-    db.insertNode({
-        id: recipeId,
-        name: 'Receita ' + recipeId,
-    }, ['Recipe'], function (err, node) {
-        if (err) return next(err);
     });
 
     res.json({});
