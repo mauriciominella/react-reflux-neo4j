@@ -7,7 +7,7 @@ export default function peopleService () {
 }
 
 export function getAll() {
-    const url = 'http://localhost:13000/persons';
+    const url = 'http://localhost:13000/meals';
     return axios.get(url)
 }
 

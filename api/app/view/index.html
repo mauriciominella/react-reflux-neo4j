@@ -21,7 +21,7 @@
         $scope.nodes = [];
 
         $scope.show = function () {
-          $http.get('/persons').then(function (resp) {
+          $http.get('/meals').then(function (resp) {
             $scope.nodes = resp.data;
           });
         };

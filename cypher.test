@@ -1,0 +1,7 @@
+match (m:meal)
+        <-[:is_part_of]-(opt:option)
+        <-[:is_part_of]-(rec:recipe)
+
+        <-[:is_part_of]-(opt:option)
+        <-[:is_part_of]-(rec:group)
+        <-[:belongs]-(rec:food)
