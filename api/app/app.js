@@ -1,8 +1,11 @@
 var express = require('express');
+var cors = require('cors')
 var app = express();
 
 var neo4j = require('node-neo4j');
 var db = new neo4j('http://neo4j:test@neo4j:7474');
+
+app.use(cors())
 
 app.use('/', express.static(__dirname + '/view'));
 
