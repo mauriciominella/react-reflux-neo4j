@@ -6,7 +6,7 @@ const App = (props) => {
     return (
       <div>
         <Header />
-        <div className="content">
+        <div className="nice-container-fluid">
           {props.children}
         </div>
           <Footer />

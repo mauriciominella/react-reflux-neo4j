@@ -4,11 +4,11 @@ import ItemStore from '../stores/itemStore';
 import ItemActions from '../actions/itemActions';
 
 class Home extends React.Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
     this.state = {
-      items : [],
+      items: [],
       loading: false
     };
   }
@@ -28,9 +28,13 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Home Area</h1>
-        <ItemList { ...this.state } />
+      <div className="nice-panel brand primary info good warning">
+        <div className="nice-panel-heading">
+          Meal
+        </div>
+        <div className="nice-panel-content">
+          <ItemList { ...this.state } />
+        </div>
       </div>
     );
   }

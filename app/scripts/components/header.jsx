@@ -3,16 +3,14 @@ import { Link } from 'react-router';
 
 const Header = (props) => {
   return (
-    <header className="clearfix">
-      Application Name
-      <nav className="clearfix">
-        <div className="nav-item">
-          <Link to="home">Home</Link>
-        </div>
-        <div className="nav-item">
-          <Link to="info">Info</Link>
-        </div>
-      </nav>
+    <header className="fixed">
+      <div className="nice-header-container">
+        <h1 class="nice-header-brand">
+          <a href="#">
+            My Application
+          </a>
+        </h1>
+      </div>
     </header>
   )
 };

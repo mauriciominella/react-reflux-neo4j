@@ -43,6 +43,7 @@
     "webpack": "^1.12.3"
   },
   "dependencies": {
+    "@textkernel/nice": "^1.2.0",
     "axios": "^0.16.1",
     "history": "^1.13.0",
     "react": "^15.3.0",

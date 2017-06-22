@@ -45,14 +45,7 @@ gulp.task('html', function() {
 gulp.task('styles',function(cb) {
 
   // convert stylus to css
-  return gulp.src(app + 'stylus/main.styl')
-    .pipe($.stylus({
-      // only compress if we are in production
-      compress: isProduction,
-      // include 'normal' css into main.css
-      'include css' : true
-    }))
-    .pipe($.autoprefixer({browsers: autoprefixerBrowsers})) 
+  return gulp.src('node_modules/@textkernel/nice/dist/*')
     .pipe(gulp.dest(dist + 'css/'))
     .pipe($.size({ title : 'css' }))
     .pipe($.connect.reload());
@@ -79,7 +72,6 @@ gulp.task('images', function(cb) {
 
 // watch styl, html and js file changes
 gulp.task('watch', function() {
-  gulp.watch(app + 'stylus/*.styl', ['styles']);
   gulp.watch(app + 'index.html', ['html']);
   gulp.watch(app + 'scripts/**/*.js', ['scripts']);
   gulp.watch(app + 'scripts/**/*.jsx', ['scripts']);

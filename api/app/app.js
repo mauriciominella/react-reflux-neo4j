@@ -46,19 +46,26 @@ app.get('/tools/load', function (req, res, next) {
     }, ['Meal'], function (err, node) {
         if (err) return next(err);
         insertOption(function (option) {
-            insertRelationship(node._id, option._id, 'IS_PART_OF');
+            insertRelationship(option._id, node._id, 'IS_PART_OF');
             insertRecipe(function (recipe) {
-                insertRelationship(option._id, recipe._id, 'IS_PART_OF');
+                insertRelationship(recipe._id, option._id, 'IS_PART_OF');
             });
         });
 
         insertOption(function (option) {
-            insertRelationship(node._id, option._id, 'IS_PART_OF');
+            insertRelationship(option._id, node._id, 'IS_PART_OF');
             insertRecipe(function (recipe) {
-                insertRelationship(option._id, recipe._id, 'IS_PART_OF');
+                insertRelationship(recipe._id, option._id, 'IS_PART_OF');
             });
         });
 
+        insertOption(function (option) {
+            insertRelationship(option._id, node._id, 'LIKES');
+            insertRelationship(option._id, node._id, 'BELONGS');
+            insertRecipe(function (recipe) {
+                insertRelationship(recipe._id, option._id, 'IS_PART_OF');
+            });
+        });
     });
 
     res.json({});
@@ -80,6 +87,16 @@ app.get('/persons', function (req, res, next) {
 
 app.get('/meals', function (req, res, next) {
     db.cypherQuery("MATCH (meal:Meal) RETURN meal", function (err, result) {
+        if (err) return next(err);
+        res.json(result.data);
+    });
+});
+
+app.get('/meals/:mealdId/options', function (req, res, next) {
+    const mealId = req.params.mealId;
+    const query = "MATCH (meal:Meal {id:" + mealId +" })<-[:IS_PART_OF]-(option:Option) RETURN option";
+    console.log(query);
+    db.cypherQuery(query, function (err, result) {
         if (err) return next(err);
         res.json(result.data);
     });
