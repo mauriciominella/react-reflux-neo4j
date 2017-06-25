@@ -28,14 +28,9 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="nice-panel brand primary info good warning">
-        <div className="nice-panel-heading">
-          Meal
-        </div>
-        <div className="nice-panel-content">
-          <ItemList { ...this.state } />
-        </div>
-      </div>
+      <item className="nice-panel brand primary info good warning">
+        <ItemList { ...this.state } />
+      </item>
     );
   }
 }

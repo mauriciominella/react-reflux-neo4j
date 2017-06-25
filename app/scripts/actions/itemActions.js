@@ -8,17 +8,7 @@ const ItemActions = Reflux.createActions({
 
 ItemActions.loadItems.listen(function(){
     mealService().getAll().then((items) => {
-        const onlyNames = items.data.map(meal => meal.name);
-        this.completed(onlyNames);
-    }).catch((err) => {
-        this.failed(err);
-    });
-});
-
-ItemActions.loadItems.listen(function(){
-    mealService().getAll().then((items) => {
-        const onlyNames = items.data.map(meal => meal.name);
-        this.completed(onlyNames);
+        this.completed(items.data);
     }).catch((err) => {
         this.failed(err);
     });

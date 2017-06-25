@@ -61,7 +61,6 @@ app.get('/tools/load', function (req, res, next) {
 
         insertOption(function (option) {
             insertRelationship(option._id, node._id, 'LIKES');
-            insertRelationship(option._id, node._id, 'BELONGS');
             insertRecipe(function (recipe) {
                 insertRelationship(recipe._id, option._id, 'IS_PART_OF');
             });
