@@ -8,7 +8,7 @@ const ItemList = (props) => {
   return (
     <div>
       {loading}
-      <div className="nice-panel">
+      <div>
         {items}
       </div>
     </div>

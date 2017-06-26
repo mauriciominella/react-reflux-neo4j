@@ -1,13 +1,17 @@
 import React from 'react';
 
 const Item = (props) => {
+  const styles = {
+    margin: 20
+  }
+
   return (
-    <div>
+    <div  className="nice-panel" style={styles}>
       <div className="nice-panel-heading">
         {props.item.name}
       </div>
       <div className="nice-panel-content">
-          content
+        content
       </div>
     </div>
   );
