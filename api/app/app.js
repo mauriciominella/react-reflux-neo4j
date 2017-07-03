@@ -91,7 +91,7 @@ app.get('/meals', function (req, res, next) {
     });
 });
 
-app.get('/meals/:mealdId/options', function (req, res, next) {
+app.get('/meals/:mealId/options', function (req, res, next) {
     const mealId = req.params.mealId;
     const query = "MATCH (meal:Meal {id:" + mealId +" })<-[:IS_PART_OF]-(option:Option) RETURN option";
     console.log(query);
