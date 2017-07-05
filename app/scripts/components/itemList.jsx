@@ -1,8 +1,9 @@
 import React from 'react';
 import Item from '../components/item.jsx';
+import PropTypes from 'prop-types';
 
 const ItemList = (props) => {
-  let items = props.items.map(item => <Item key={item.id} item={item} />),
+  let items = props.items.map(item => <Item itemClick={props.itemClick.bind(this, item.id)} key={item.id} item={item} options={props.options} />),
     loading = props.loading ? <div className="loading-label">Loading...</div> : '';
 
   return (
@@ -16,8 +17,10 @@ const ItemList = (props) => {
 };
 
 ItemList.propTypes = {
-  loading: React.PropTypes.bool,
-  items: React.PropTypes.array
+  loading: PropTypes.bool,
+  items: PropTypes.array,
+  options: PropTypes.array,
+  itemClick: PropTypes.func
 }
 
 export default ItemList;

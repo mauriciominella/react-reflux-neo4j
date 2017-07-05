@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <header className="fixed">
       <div className="nice-header-container">
-        <h1 class="nice-header-brand">
+        <h1 className="nice-header-brand">
           <a href="#">
             My Application
           </a>
